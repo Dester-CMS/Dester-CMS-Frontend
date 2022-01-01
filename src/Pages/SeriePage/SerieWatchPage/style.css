@@ -1,0 +1,27 @@
+.episode-video-loading {
+    display: flex;
+    align-items: center;
+    background-color: var(--s-bg-2);
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.episode-video-loading-title {
+    font-size: 20px;
+    color: var(--s-white-8);
+    margin-left: 20px;
+}
+
+.episode-video-top {
+    display: flex;
+    align-items: center;
+    background-color: var(--s-bg-2);
+    padding: 10px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.episode-video-title {
+    font-size: 20px;
+    margin-right: 20px;
+}

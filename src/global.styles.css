@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;400&display=swap');
+
+:root {
+    --s-color-1: #14dca0;
+    --s-color-1-7: #28daa4;
+    --s-color-1-5: #3cd4a7;
+    --s-color-1-2: #52d1ab;
+    --s-color-2: #0084ff;
+    --s-color-2-7: #1482dc;
+    --s-color-2-5: #2585d4;
+    --s-color-2-2: #3385c9;
+    --s-color-3: #3e00cf;
+    --s-color-3-7: #fc7d7d;
+    --s-white: #ffffff;
+    --s-white-9: #ffffffe6;
+    --s-white-8: #ffffffcc;
+    --s-white-7: #ffffffb3;
+    --s-white-6: #ffffff99;
+    --s-white-5: #ffffff80;
+    --s-white-4: #ffffff66;
+    --s-white-3: #ffffff4d;
+    --s-white-2: #ffffff33;
+    --s-white-1: #ffffff1a;
+    --s-black: #000000;
+    --s-transparent: #00000000;
+    --s-bg-1: #071018;
+    --s-bg-2: #162B45;
+    --s-bg-3: #232f57;
+    --plyr-color-main: var(--s-color-1);
+    --swiper-theme-color: var(--s-white) !important;
+    --swiper-navigation-size: 20px;
+}
+
+body {
+    background-color: var(--s-bg-1);
+    font-family: 'Readex Pro', sans-serif;
+}
+
+body * {
+    transition: all 0.1s ease-out;
+}
+
+h4 {
+    color: var(--s-white-8);
+}
+
+a {
+    text-decoration: none;
+    color: var(--s-color-1);
+}
+
+.plyr__menu__value:hover {
+    color: black;
+}
+
+.bg-color-white {
+    background-color: var(--s-white);
+}
+
+.color-black {
+    color: var(--s-black);
+}
+
+.color-white {
+    color: var(--s-white-8);
+}
+
+.disabled-link {
+    pointer-events: none;
+}
+
+.badge {
+    border: 2px solid var(--s-bg-2);
+}
+
+@media only screen and (min-width: 991px) {
+
+    /* footer {
+        margin-bottom: 0px;
+    } */
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: var(--s-bg-2); 
+    }
+     
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: var(--s-color-1); 
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555; 
+    }
+}

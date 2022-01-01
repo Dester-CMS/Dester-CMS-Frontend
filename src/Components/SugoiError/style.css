@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Catamaran:400,800');
+
+.error-title {
+    color: var(--s-color-2);
+}
+.error-message {
+    font-size: 14px;
+    color: var(--s-white);
+}
+.error-container {
+    text-align: center;
+    font-size: 2em;
+    font-weight: 400;
+    margin: 70px 15px;
+}
+.error-container .outer-circle {
+    background: var(--s-color-1);
+    border-radius: 50%;
+    height: 110px;
+    width: 110px;
+    position: relative;
+}
+.error-container .outer-circle img {
+    position: absolute;
+    background: var(--s-white);
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    top: 50%;
+    left: 50%;
+    margin: -50px 0px 0px -50px;
+}
+.error-container > span {
+    color: whitesmoke;
+    font-size: 5em;
+    display: inline-block;
+    position: relative;
+}
+
+@media only screen and (min-width: 992px) {
+    .error-container > span {
+        font-size: 7em;
+    }
+    .error-container .outer-circle {
+        height: 180px;
+        width: 180px;
+    }
+    .error-container .outer-circle img {
+        height: 160px;
+        width: 160px;
+        margin: -80px 0px 0px -80px;
+    }
+}
