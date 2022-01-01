@@ -3,10 +3,10 @@ An OpenSource Frontend for Strapi CMS
 
 ![Image](https://github.com/Dester-Alken/Dester-Frontend/blob/main/src/assets/logo-full.svg)
 
-![GitHub repo size](https://img.shields.io/github/repo-size/Dester-Alken/Dester?style=for-the-badge)
-![GitHub issues](https://img.shields.io/github/issues/Dester-Alken/Dester?style=for-the-badge)
-![GitHub repo forks](https://img.shields.io/github/forks/Dester-Alken/Dester?style=for-the-badge)
-![GitHub stars](https://img.shields.io/github/stars/Dester-Alken/Dester?color=FFFF00&style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/Dester-Alken/Dester-Frontend?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues/Dester-Alken/Dester-Frontend?style=for-the-badge)
+![GitHub repo forks](https://img.shields.io/github/forks/Dester-Alken/Dester-Frontend?style=for-the-badge)
+![GitHub stars](https://img.shields.io/github/stars/Dester-Alken/Dester-Frontend?color=FFFF00&style=for-the-badge)
 
 This is a Custom Frontend for the Headless CMS Strapi.
 
@@ -56,7 +56,7 @@ yarn install
 
 <br>
 
-## All External information and images are from TMDb a public movie and tv database
+## All External information and images are from TMDb a public movie and tv database called The Movie Database.
 
 <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_1-5bdc75aaebeb75dc7ae79426ddd9be3b2be1e342510f8202baf6bffa71d7f5c4.svg" alt="drawing" width="200"/>
 
