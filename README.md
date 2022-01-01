@@ -1,7 +1,7 @@
 # Dester-Frontend
 An OpenSource Frontend for Strapi CMS
 
-![Image](https://github.com/Dester-Alken/Dester/blob/main/src/assets/logo-full.svg)
+![Image](https://github.com/Dester-Alken/Dester-Frontend/blob/main/src/assets/logo-full.svg)
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Dester-Alken/Dester?style=for-the-badge)
 ![GitHub issues](https://img.shields.io/github/issues/Dester-Alken/Dester?style=for-the-badge)
