@@ -56,7 +56,7 @@ const SugoiSlider = ({title, itemData, layout, slug, itemType}) => {
                                         </div>
                                         <Figure.Caption>
                                             <h5><Badge bg="dark">{singleItem.tmdb_release_status}</Badge></h5>
-                                            <h6>{singleItem.title}</h6>
+                                            <h6>{singleItem.tmdb_title}</h6>
                                         </Figure.Caption>
                                     </Figure>
                                 </a>
@@ -128,7 +128,7 @@ const SugoiSlider = ({title, itemData, layout, slug, itemType}) => {
                                         </div>
                                         <Figure.Caption>
                                             <h5><Badge bg="dark">{singleItem.tmdb_release_status}</Badge></h5>
-                                            <h6>{singleItem.title}</h6>
+                                            <h6>{singleItem.tmdb_title}</h6>
                                         </Figure.Caption>
                                     </Figure>
                                 </a>
