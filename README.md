@@ -3,14 +3,6 @@ An OpenSource Frontend for Strapi CMS
 
 ![Image](https://github.com/Dester-Alken/Dester-Frontend/blob/main/src/assets/logo-full.svg)
 
-<<<<<<< Updated upstream
-=======
-![GitHub file size](https://img.shields.io/github/repo-size/Dester-Alken/Dester-Frontend?style=for-the-badge&kill_cache=1)
-![GitHub issues](https://img.shields.io/github/issues/Dester-Alken/Dester-Frontend?style=for-the-badge&kill_cache=1)
-![GitHub repo forks](https://img.shields.io/github/forks/Dester-Alken/Dester-Frontend?style=for-the-badge&kill_cache=1)
-![GitHub stars](https://img.shields.io/github/stars/Dester-Alken/Dester-Frontend?color=FFFF00&style=for-the-badge&kill_cache=1)
-
->>>>>>> Stashed changes
 This is a Custom Frontend for the Headless CMS Strapi.
 
 <br>
