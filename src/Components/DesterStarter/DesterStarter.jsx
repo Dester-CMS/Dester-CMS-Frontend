@@ -2,7 +2,7 @@ import { Alert, Container } from 'react-bootstrap';
 import { APP_GREETING_IMG } from '../../config';
 import "./style.css"
 
-const SugoiStarter = () => {
+const DesterStarter = () => {
     return (
         <div className="sugoi-greeting m-3 align-items-center">
             <Container>
@@ -15,4 +15,4 @@ const SugoiStarter = () => {
     )
 }
 
-export default SugoiStarter
+export default DesterStarter;

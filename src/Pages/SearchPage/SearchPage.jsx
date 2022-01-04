@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Col, Container, FormControl, InputGroup, Row } from 'react-bootstrap';
-import { useFetchMovieMultiUrl, useFetchSerieMultiUrl } from '../../utilities/useFetchMultiUrl';
 import { ItemDesignOne } from '../../Components';
 import "./style.css"
+import { useFetchMultiMoviesUrl, useFetchMultiSeriesUrl } from '../../utilities/useFetchSecureUrl';
 
 const SearchPage = () => {
 
@@ -11,24 +11,36 @@ const SearchPage = () => {
     const [filteredResultsSeries, setFilteredResultsSeries] = useState([]);
 
     // Fetching Data
-    const { mainUrlMovieData, tmdbUrlMovieData, loadingMultiUrlMovie, errorMultiUrlMovie } = useFetchMovieMultiUrl(process.env.REACT_APP_S_API_URL, process.env.REACT_APP_TMDB_API_KEY);
-    const { mainUrlSerieData, tmdbUrlSerieData, loadingMultiUrlSerie, errorMultiUrlSerie } = useFetchSerieMultiUrl(process.env.REACT_APP_S_API_URL, process.env.REACT_APP_TMDB_API_KEY);
 
-    if (loadingMultiUrlMovie && loadingMultiUrlSerie) return <h3 className="color-white p-3">Loading...</h3>
+    const { 
+        dataMainSecureMoviesUrl,
+        dataTmdbSecureMoviesUrl,
+        loadingSecureMoviesUrl,
+        errorSecureMoviesUrl
+    } = useFetchMultiMoviesUrl(process.env.REACT_APP_S_API_URL, process.env.REACT_APP_SECURE_URL);
+    
+     const { 
+        dataMainSecureSeriesUrl,
+        dataTmdbSecureSeriesUrl,
+        loadingSecureSeriesUrl,
+        errorSecureSeriesUrl
+    } = useFetchMultiSeriesUrl(process.env.REACT_APP_S_API_URL, process.env.REACT_APP_SECURE_URL);
+
+    if (loadingSecureMoviesUrl && loadingSecureSeriesUrl) return <h3 className="color-white p-3">Loading...</h3>
 
     // Error Handleing
-    if (errorMultiUrlMovie) console.log(errorMultiUrlMovie);
-    if (errorMultiUrlSerie) console.log(errorMultiUrlSerie);
+    if (errorSecureMoviesUrl) console.log(errorSecureMoviesUrl);
+    if (errorSecureSeriesUrl) console.log(errorSecureSeriesUrl);
 
     // Variables to store API fetch results
     let movieResult = "", serieResult = "";
 
     // Combineing main URL data and TMDB data
     // Example for Movie movie.custom_name_field = tmdbItem ? tmdbItem.pick_a_value_to_combine
-    if(mainUrlMovieData && tmdbUrlMovieData) {
-        movieResult = mainUrlMovieData.map(movie => {
+    if(dataMainSecureMoviesUrl && dataTmdbSecureMoviesUrl) {
+        movieResult = dataMainSecureMoviesUrl.map(movie => {
 
-        const tmdbItem = tmdbUrlMovieData.find(tmdbMovie => tmdbMovie.id === movie.tmdb_id);
+        const tmdbItem = dataTmdbSecureMoviesUrl.find(tmdbMovie => tmdbMovie.id === movie.tmdb_id);
         
         movie.tmdb_title = tmdbItem ? tmdbItem.title : null;
         movie.tmdb_overview = tmdbItem ? tmdbItem.overview : null;
@@ -47,10 +59,10 @@ const SearchPage = () => {
         });
     };
 
-    if(mainUrlSerieData && tmdbUrlSerieData) {
-        serieResult = mainUrlSerieData.map(serie => {
+    if(dataMainSecureSeriesUrl && dataTmdbSecureSeriesUrl) {
+        serieResult = dataMainSecureSeriesUrl.map(serie => {
 
-        const tmdbItem = tmdbUrlSerieData.find(tmdbSerie => tmdbSerie.id === serie.tmdb_id);
+        const tmdbItem = dataTmdbSecureSeriesUrl.find(tmdbSerie => tmdbSerie.id === serie.tmdb_id);
         
         serie.tmdb_title = tmdbItem ? tmdbItem.name : null;
         serie.tmdb_overview = tmdbItem ? tmdbItem.overview : null;

@@ -4,16 +4,16 @@ import { BACKDROP_SIZE, POSTER_SIZE, TMDB_IMAGE_BASE_URL } from '../../config';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import ReactStars from "react-rating-stars-component";
 import 'react-circular-progressbar/dist/styles.css';
-import { useFetchMultiSingle } from '../../utilities/useFetchMultiUrl';
 import PosterPlaceholder from '../../assets/rectangle-poster.svg';
 import { useState } from 'react';
-import { SugoiSkeletonItemPage } from '../../Components';
+import { DesterSkeletonItemPage } from '../../Components';
 import Plyr from 'plyr-react';
 import 'plyr-react/dist/plyr.css';
 import './style.css';
-import SugoiError from '../../Components/SugoiError/SugoiError';
+import DesterError from '../../Components/DesterError/DesterError';
+import { useFetchMultiSingle } from '../../utilities/useFetchSecureUrl';
 
-const SugoiMoviePage = () => {
+const DesterMoviePage = () => {
 
     // Pop Modal
 
@@ -46,11 +46,11 @@ const SugoiMoviePage = () => {
     const location = useLocation();
     const path = location.pathname.split("/")[2];
 
-    const { mainUrlDataSingle, tmdbUrlDataSingle, loadingMultiUrlSingle, errorMultiUrlSingle } = useFetchMultiSingle(process.env.REACT_APP_S_API_URL, process.env.REACT_APP_TMDB_API_KEY, "movies", "movie", path);
+    const { mainUrlDataSingle, tmdbUrlDataSingle, loadingMultiUrlSingle, errorMultiUrlSingle } = useFetchMultiSingle(process.env.REACT_APP_S_API_URL, process.env.REACT_APP_SECURE_URL, "movies", "movie", path);
 
-    if (loadingMultiUrlSingle) return <SugoiSkeletonItemPage/>;
+    if (loadingMultiUrlSingle) return <DesterSkeletonItemPage/>;
 
-    if ( !mainUrlDataSingle ) return (<SugoiError errorCode="404" message="Can't Find Movie"/>);
+    if ( !mainUrlDataSingle ) return (<DesterError errorCode="404" message="Can't Find Movie"/>);
 
     if (errorMultiUrlSingle) console.log(errorMultiUrlSingle);
 
@@ -192,4 +192,4 @@ const SugoiMoviePage = () => {
     )
 }
 
-export default SugoiMoviePage;
+export default DesterMoviePage;

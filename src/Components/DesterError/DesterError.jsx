@@ -2,7 +2,7 @@ import { Container } from 'react-bootstrap';
 import { APP_ERROR_IMG } from '../../config';
 import './style.css';
 
-const SugoiError = ({ message, errorCode }) => {
+const DesterError = ({ message, errorCode }) => {
     let errorCodeArray = [...errorCode];
     return (
         <Container className="error-main-container">
@@ -23,4 +23,4 @@ const SugoiError = ({ message, errorCode }) => {
     )
 }
 
-export default SugoiError
+export default DesterError

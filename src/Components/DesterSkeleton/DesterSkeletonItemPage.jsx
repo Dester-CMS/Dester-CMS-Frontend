@@ -2,7 +2,7 @@ import { Breadcrumb, Container } from 'react-bootstrap';
 import Skeleton from 'react-loading-skeleton';
 import { PLACEHOLDER_BACKDROP, PLACEHOLDER_POSTER, SKELETON_BASE_COLOR, SKELETON_HEIGHT_20, SKELETON_SHINE_COLOR, SKELETON_WIDTH_280, SKELETON_WIDTH_70 } from '../../config';
 
-const SugoiSkeletonItemPage = () => {
+const DesterSkeletonItemPage = () => {
     return (
         <>
             <Container fluid className="g-0">
@@ -36,4 +36,4 @@ const SugoiSkeletonItemPage = () => {
     )
 };
 
-export { SugoiSkeletonItemPage };
+export { DesterSkeletonItemPage };

@@ -17,7 +17,7 @@
 
 .home-bg-info-0 h2 {
     white-space: nowrap;
-    width: 90%;
+    width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
 }

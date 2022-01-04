@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { PLACEHOLDER_BACKDROP } from "../../config";
 import "./style.css"
 
-const SugoiEpisodes = ({ episodes, tmdb_id }) => {
+const DesterEpisodes = ({ episodes, tmdb_id }) => {
     return (
         <main>
             <Container fluid>
@@ -40,4 +40,4 @@ const SugoiEpisodes = ({ episodes, tmdb_id }) => {
     )
 }
 
-export { SugoiEpisodes };
+export { DesterEpisodes };

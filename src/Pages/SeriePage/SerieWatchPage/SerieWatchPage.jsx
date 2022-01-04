@@ -2,9 +2,9 @@ import { Link, useSearchParams } from 'react-router-dom';
 import Plyr from 'plyr-react';
 import 'plyr-react/dist/plyr.css';
 import { Button, Spinner } from 'react-bootstrap';
-import { SugoiEpisodes } from '../../../Components';
-import { useFetchMultiSingle } from '../../../utilities/useFetchMultiUrl';
+import { DesterEpisodes } from '../../../Components';
 import './style.css';
+import { useFetchMultiSingle } from '../../../utilities/useFetchSecureUrl';
 
 
 const Controls = ({item_index_no, tmdb_id, episodes}) => {
@@ -16,14 +16,14 @@ const Controls = ({item_index_no, tmdb_id, episodes}) => {
     )
 }
 
-const SugoiSerieWatchPage = () => {
+const DesterSerieWatchPage = () => {
     
     const [searchParams, setSearchParams] = useSearchParams();
 
     const tmdb_id = searchParams.get("tmdb_id")
     const item_index_no = searchParams.get("watch_index_no");
 
-    const { mainUrlDataSingle, loadingMultiUrlSingle, errorMultiUrlSingle } = useFetchMultiSingle(process.env.REACT_APP_S_API_URL, process.env.REACT_APP_TMDB_API_KEY, "series", "tv", tmdb_id);
+    const { mainUrlDataSingle, loadingMultiUrlSingle, errorMultiUrlSingle } = useFetchMultiSingle(process.env.REACT_APP_S_API_URL, process.env.REACT_APP_SECURE_URL, "series", "serie", tmdb_id);
 
     if (loadingMultiUrlSingle) return (
         <div className="episode-video-loading">
@@ -87,11 +87,11 @@ const SugoiSerieWatchPage = () => {
                             <Controls tmdb_id={tmdb_id} episodes={episodes} item_index_no={item_index_no} />
                         </div>
                     )}
-                    <SugoiEpisodes tmdb_id={tmdb_id} episodes={episodes}/>
+                    <DesterEpisodes tmdb_id={tmdb_id} episodes={episodes}/>
                 </div>
             )}
         </div>
     )
 }
 
-export default SugoiSerieWatchPage;
+export default DesterSerieWatchPage;

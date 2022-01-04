@@ -4,14 +4,14 @@ import { BACKDROP_SIZE, POSTER_SIZE, TMDB_IMAGE_BASE_URL } from '../../config';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import ReactStars from "react-rating-stars-component";
 import 'react-circular-progressbar/dist/styles.css';
-import { useFetchMultiSingle } from '../../utilities/useFetchMultiUrl';
 import PosterPlaceholder from '../../assets/rectangle-poster.svg';
 import { useState } from 'react';
-import { SugoiSkeletonItemPage } from '../../Components';
-import { SugoiEpisodes } from '../../Components';
-import SugoiError from '../../Components/SugoiError/SugoiError';
+import { DesterSkeletonItemPage } from '../../Components';
+import { DesterEpisodes } from '../../Components';
+import DesterError from '../../Components/DesterError/DesterError';
+import { useFetchMultiSingle } from '../../utilities/useFetchSecureUrl';
 
-const SugoiSeriePage = () => {
+const DesterSeriePage = () => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -20,11 +20,11 @@ const SugoiSeriePage = () => {
     const location = useLocation();
     const path = location.pathname.split("/")[2];
 
-    const { mainUrlDataSingle, tmdbUrlDataSingle, loadingMultiUrlSingle, errorMultiUrlSingle } = useFetchMultiSingle(process.env.REACT_APP_S_API_URL, process.env.REACT_APP_TMDB_API_KEY, "series", "tv", path);
+    const { mainUrlDataSingle, tmdbUrlDataSingle, loadingMultiUrlSingle, errorMultiUrlSingle } = useFetchMultiSingle(process.env.REACT_APP_S_API_URL, process.env.REACT_APP_SECURE_URL, "series", "serie", path);
 
-    if (loadingMultiUrlSingle) return <SugoiSkeletonItemPage/>
+    if (loadingMultiUrlSingle) return <DesterSkeletonItemPage/>
 
-    if ( !mainUrlDataSingle ) return (<SugoiError errorCode="404" message="Can't Find Serie"/>);
+    if ( !mainUrlDataSingle ) return (<DesterError errorCode="404" message="Can't Find Serie"/>);
 
     if (errorMultiUrlSingle) console.log(errorMultiUrlSingle);
 
@@ -145,11 +145,11 @@ const SugoiSeriePage = () => {
                         </Ratio>
                         </Modal.Body>
                     </Modal>
-                    <SugoiEpisodes tmdb_id={path} episodes={mainUrlDataSingle.episodes}/>
+                    <DesterEpisodes tmdb_id={path} episodes={mainUrlDataSingle.episodes}/>
                 </Container>
             )}
         </div>
     )
 }
 
-export default SugoiSeriePage;
+export default DesterSeriePage;

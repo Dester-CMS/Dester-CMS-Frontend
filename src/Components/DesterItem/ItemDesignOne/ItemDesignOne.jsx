@@ -2,12 +2,11 @@ import React from 'react'
 import { Figure } from 'react-bootstrap';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { Link } from 'react-router-dom';
 import { PLACEHOLDER_POSTER, POSTER_SIZE, TMDB_IMAGE_BASE_URL } from '../../../config';
 
 const ItemDesignOne = ({ item, type }) => {
     return (
-        <Link to={`/${type}/${item.tmdb_id}?title=${item.title}`}>
+        <a href={`/${type}/${item.tmdb_id}?title=${item.tmdb_title}`}>
             <Figure>
                 <div className="card-img mb-2">
                     <div className="card-info">
@@ -41,10 +40,10 @@ const ItemDesignOne = ({ item, type }) => {
                     </div>
                 </div>
                 <Figure.Caption> 
-                    <span>{item.title}</span>
+                    <span>{item.tmdb_title}</span>
                 </Figure.Caption>
             </Figure>
-        </Link>
+        </a>
     )
 }
 

@@ -2,7 +2,7 @@ import Skeleton from 'react-loading-skeleton';
 import { APP_LOGO_FULL, SKELETON_BASE_COLOR, SKELETON_HEIGHT_20, SKELETON_SHINE_COLOR, SKELETON_WIDTH_300 } from '../../config';
 import './style.css';
 
-const SugoiFooter = ({ homeResult }) => {
+const DesterFooter = ({ homeResult }) => {
     return (
         <footer className="text-center text-lg-start bg-custom text-muted">
           <section className="d-flex justify-content-center justify-content-lg-between p-4">
@@ -89,7 +89,7 @@ const SugoiFooter = ({ homeResult }) => {
     )
 };
 
-const SugoiFooterPlaceHolder = () => {
+const DesterFooterPlaceHolder = () => {
   return (
       <footer className="text-center text-lg-start bg-custom text-muted">
         <section className="d-flex justify-content-center justify-content-lg-between p-4">
@@ -115,4 +115,4 @@ const SugoiFooterPlaceHolder = () => {
   )
 };
 
-export { SugoiFooter, SugoiFooterPlaceHolder }
+export { DesterFooter, DesterFooterPlaceHolder }

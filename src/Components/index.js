@@ -1,12 +1,13 @@
-export { SugoiCarousel, SugoiCarouselPlaceHolder } from './SugoiCarousel/SugoiCarousel';
-export { SugoiEpisodes } from './SugoiEpisodes/SugoiEpisodes'
-export { SugoiFooter, SugoiFooterPlaceHolder } from './SugoiFooter/SugoiFooter';
-export { SugoiNavbar, SugoiNavbarPlaceHolder } from './SugoiNavbar/SugoiNavbar';
-export { SugoiSkeletonHome } from './SugoiSkeleton/SugoiSkeletonHome';
-export { SugoiSkeletonItemPage } from './SugoiSkeleton/SugoiSkeletonItemPage';
-export { SugoiSlider, SugoiSliderPlaceHolder } from './SugoiSlider/SugoiSlider';
-export { default as SugoiStarter } from './SugoiStarter/SugoiStarter'
+export { DesterCarousel, DesterCarouselPlaceHolder } from './DesterCarousel/DesterCarousel';
+export { DesterEpisodes } from './DesterEpisodes/DesterEpisodes'
+export { DesterFooter, DesterFooterPlaceHolder } from './DesterFooter/DesterFooter';
+export { DesterNavbar, DesterNavbarPlaceHolder } from './DesterNavbar/DesterNavbar';
+export { DesterSkeletonHome } from './DesterSkeleton/DesterSkeletonHome';
+export { DesterSkeletonItemPage } from './DesterSkeleton/DesterSkeletonItemPage';
+export { DesterSlider, DesterSliderPlaceHolder } from './DesterSlider/DesterSlider';
+export { default as DesterStarter } from './DesterStarter/DesterStarter';
+export { default as DesterError } from './DesterError/DesterError';
 
 // Items
 
-export { default as ItemDesignOne } from './SugoiItem/ItemDesignOne/ItemDesignOne';
+export { default as ItemDesignOne } from './DesterItem/ItemDesignOne/ItemDesignOne';

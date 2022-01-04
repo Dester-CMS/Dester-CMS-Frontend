@@ -3,19 +3,19 @@ import { Badge, Button, Carousel } from 'react-bootstrap';
 import BackdropPlaceHolder from '../../assets/rectangle-backdrop.svg';
 import Skeleton from 'react-loading-skeleton';
 import './style.css';
-import { SKELETON_BASE_COLOR, SKELETON_SHINE_COLOR, SKELETON_WIDTH_70 } from '../../config';
+import { SKELETON_BASE_COLOR, SKELETON_SHINE_COLOR, SKELETON_WIDTH_70, TMDB_IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../config';
 
-const SugoiCarousel = ({itemData, itemType}) => {
+const DesterCarousel = ({itemData, itemType}) => {
 
     return (
         <Carousel fade style={{marginBottom: "25px"}}>
             { itemData && (itemData.slice(0, 3).map((item) => (
             <Carousel.Item key={item.id}>
                 <Carousel.Caption style={{"width": "100%"}}>
-                <div className="container-home-info justify-content-center col-lg-5 g-0">
+                <div className="container-home-info col-lg-5 g-0">
                     <div className="home-bg-info-0">
-                        <img className="img-fluid home-bg-logo hide" src={ item.tmdb_extra_images.logos[0] ? "http://image.tmdb.org/t/p/w500" + item.tmdb_extra_images.logos[0].file_path : "" } alt=""/>
-                        <h4>{item.title}</h4>
+                        <img className="img-fluid home-bg-logo hide" src={ item.tmdb_extra_images.logos.length === 0 ? "" : TMDB_IMAGE_BASE_URL + POSTER_SIZE + item.tmdb_extra_images.logos[0].file_path } alt=""/>
+                        <h4>{item.tmdb_title || item.title}</h4>
                     </div>
                     <div className="home-bg-info-1">
                         <span className="movie-year">{item.tmdb_release_date}</span><span className="break">|</span><span className="movie-age-rating">{item.adult ? "R" : "PG"}</span>
@@ -26,14 +26,14 @@ const SugoiCarousel = ({itemData, itemType}) => {
                         ))}
                     </div>
                     <div className="home-bg-info-3">
-                        <Button href={`/${itemType}/${item.tmdb_id}?title=${item.title}`} variant="light"><i className="bi bi-play-fill"></i><span>Play Now</span></Button>
+                        <Button href={`/${itemType}/${item.tmdb_id}?title=${item.tmdb_title || item.tmdb_title}`} variant="light"><i className="bi bi-play-fill"></i><span>Play Now</span></Button>
                         <button type="button" className="btn btn-dark"><i className="bi bi-plus-circle"></i><span>Add to List</span></button>
                     </div>
                 </div>
                 </Carousel.Caption>
 
                 <div className="container-home-bg justify-content-center col-lg-7 g-0">
-                    <img className="img-fluid" src={"http://image.tmdb.org/t/p/w1280" + item.tmdb_backdrop_path} alt=""/>
+                    <img className="img-fluid" src={TMDB_IMAGE_BASE_URL + BACKDROP_SIZE + item.tmdb_backdrop_path} alt=""/>
                 </div>
             </Carousel.Item>
             )))}
@@ -41,7 +41,7 @@ const SugoiCarousel = ({itemData, itemType}) => {
     )
 };
 
-const SugoiCarouselPlaceHolder = () => {
+const DesterCarouselPlaceHolder = () => {
     return (
         <Carousel fade style={{marginBottom: "25px"}}>
             <Carousel.Item>
@@ -73,4 +73,4 @@ const SugoiCarouselPlaceHolder = () => {
     );
 };
 
-export { SugoiCarousel, SugoiCarouselPlaceHolder };
+export { DesterCarousel, DesterCarouselPlaceHolder };

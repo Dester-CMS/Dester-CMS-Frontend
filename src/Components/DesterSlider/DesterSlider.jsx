@@ -8,8 +8,9 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Badge, Container, Figure } from "react-bootstrap";
 import './style.css'
+import { POSTER_SIZE, TMDB_IMAGE_BASE_URL } from "../../config";
 
-const SugoiSlider = ({title, itemData, layout, slug, itemType}) => {
+const DesterSlider = ({title, itemData, layout, slug, itemType}) => {
 
     SwiperCore.use([Autoplay, Navigation, A11y]);
 
@@ -51,7 +52,7 @@ const SugoiSlider = ({title, itemData, layout, slug, itemType}) => {
                                             <Figure.Image
                                                 className="collection-bg-image rounded"
                                                 alt="171x180"
-                                                src={"http://image.tmdb.org/t/p/w500" + singleItem.tmdb_backdrop_path}
+                                                src={ TMDB_IMAGE_BASE_URL + POSTER_SIZE + singleItem.tmdb_backdrop_path }
                                             />
                                         </div>
                                         <Figure.Caption>
@@ -123,7 +124,7 @@ const SugoiSlider = ({title, itemData, layout, slug, itemType}) => {
                                                 </div>
                                             </div>
                                             <div className="card-img-image">
-                                                <Figure.Image className="img-fluid card-image rounded" src={"http://image.tmdb.org/t/p/w500" + singleItem.tmdb_poster_path}/>
+                                                <Figure.Image className="img-fluid card-image rounded" src={ TMDB_IMAGE_BASE_URL + POSTER_SIZE + singleItem.tmdb_poster_path }/>
                                             </div>
                                         </div>
                                         <Figure.Caption>
@@ -140,7 +141,7 @@ const SugoiSlider = ({title, itemData, layout, slug, itemType}) => {
     )
 };
 
-const SugoiSliderPlaceHolder = ({ placeholderarray, layout }) => {
+const DesterSliderPlaceHolder = ({ placeholderarray, layout }) => {
 
     SwiperCore.use([Navigation, A11y]);
 
@@ -239,4 +240,4 @@ const SugoiSliderPlaceHolder = ({ placeholderarray, layout }) => {
     )
 };
 
-export { SugoiSlider, SugoiSliderPlaceHolder }
+export { DesterSlider, DesterSliderPlaceHolder }
