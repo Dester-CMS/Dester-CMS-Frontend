@@ -1,6 +1,6 @@
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { ItemDesignOne } from "../../Components";
-import ShowMore from "@tedconf/react-show-more";
+import ShowMore from '@tedconf/react-show-more';
 
 const MoviesPage = ({ loading, error, movieResult }) => {
 
