@@ -7,11 +7,13 @@ This is a Custom Frontend for the Headless CMS Strapi.
 
 <br>
 
-## Deploy your Backend before deploying the Frontend
+## Deploy your both Backends before deploying the Frontend. Both are required in order for the Frontend to work properly.
 
 Link to the Backend Repo.
 
 https://github.com/Dester-Alken/Dester-Backend
+
+https://github.com/Dester-Alken/Dester-Server
 
 <br>
 
