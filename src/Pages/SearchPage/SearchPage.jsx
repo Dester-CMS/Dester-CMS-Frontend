@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { Col, Container, FormControl, InputGroup, Row } from 'react-bootstrap';
 import { ItemDesignOne } from '../../Components';
 import "./style.css"
-import { useFetchMultiMoviesUrl, useFetchMultiSeriesUrl } from '../../utilities/useFetchSecureUrl';
+// import { useFetchMultiMoviesUrl, useFetchMultiSeriesUrl } from '../../utilities/useFetchSecureUrl';
 
-const SearchPage = () => {
+const SearchPage = ({ movieResult, serieResult, loadingSecureMoviesUrl, loadingSecureSeriesUrl, errorSecureMoviesUrl, errorSecureSeriesUrl }) => {
 
     const [searchInput, setSearchInput] = useState('');
     const [filteredResultsMovies, setFilteredResultsMovies] = useState([]);
@@ -12,19 +12,19 @@ const SearchPage = () => {
 
     // Fetching Data
 
-    const { 
-        dataMainSecureMoviesUrl,
-        dataTmdbSecureMoviesUrl,
-        loadingSecureMoviesUrl,
-        errorSecureMoviesUrl
-    } = useFetchMultiMoviesUrl(process.env.REACT_APP_S_API_URL, process.env.REACT_APP_SECURE_URL);
+    // const { 
+    //     dataMainSecureMoviesUrl,
+    //     dataTmdbSecureMoviesUrl,
+    //     loadingSecureMoviesUrl,
+    //     errorSecureMoviesUrl
+    // } = useFetchMultiMoviesUrl(process.env.REACT_APP_S_API_URL, process.env.REACT_APP_SECURE_URL);
     
-     const { 
-        dataMainSecureSeriesUrl,
-        dataTmdbSecureSeriesUrl,
-        loadingSecureSeriesUrl,
-        errorSecureSeriesUrl
-    } = useFetchMultiSeriesUrl(process.env.REACT_APP_S_API_URL, process.env.REACT_APP_SECURE_URL);
+    //  const { 
+    //     dataMainSecureSeriesUrl,
+    //     dataTmdbSecureSeriesUrl,
+    //     loadingSecureSeriesUrl,
+    //     errorSecureSeriesUrl
+    // } = useFetchMultiSeriesUrl(process.env.REACT_APP_S_API_URL, process.env.REACT_APP_SECURE_URL);
 
     if (loadingSecureMoviesUrl && loadingSecureSeriesUrl) return <h3 className="color-white p-3">Loading...</h3>
 
@@ -32,54 +32,54 @@ const SearchPage = () => {
     if (errorSecureMoviesUrl) console.log(errorSecureMoviesUrl);
     if (errorSecureSeriesUrl) console.log(errorSecureSeriesUrl);
 
-    // Variables to store API fetch results
-    let movieResult = "", serieResult = "";
+    // // Variables to store API fetch results
+    // let movieResult = "", serieResult = "";
 
-    // Combineing main URL data and TMDB data
-    // Example for Movie movie.custom_name_field = tmdbItem ? tmdbItem.pick_a_value_to_combine
-    if(dataMainSecureMoviesUrl && dataTmdbSecureMoviesUrl) {
-        movieResult = dataMainSecureMoviesUrl.map(movie => {
+    // // Combineing main URL data and TMDB data
+    // // Example for Movie movie.custom_name_field = tmdbItem ? tmdbItem.pick_a_value_to_combine
+    // if(dataMainSecureMoviesUrl && dataTmdbSecureMoviesUrl) {
+    //     movieResult = dataMainSecureMoviesUrl.map(movie => {
 
-        const tmdbItem = dataTmdbSecureMoviesUrl.find(tmdbMovie => tmdbMovie.id === movie.tmdb_id);
+    //     const tmdbItem = dataTmdbSecureMoviesUrl.find(tmdbMovie => tmdbMovie.id === movie.tmdb_id);
         
-        movie.tmdb_title = tmdbItem ? tmdbItem.title : null;
-        movie.tmdb_overview = tmdbItem ? tmdbItem.overview : null;
-        movie.tmdb_poster_path = tmdbItem ? tmdbItem.poster_path : null;
-        movie.tmdb_backdrop_path = tmdbItem ? tmdbItem.backdrop_path : null;
-        movie.tmdb_genres = tmdbItem ? tmdbItem.genres : null;
-        movie.tmdb_extra_images = tmdbItem ? tmdbItem.images : null;
-        movie.tmdb_release_date = tmdbItem ? tmdbItem.release_date : null;
-        movie.tmdb_release_status = tmdbItem ? tmdbItem.status : null;
-        movie.tmdb_production_companies = tmdbItem ? tmdbItem.production_companies : null;
-        movie.tmdb_video_runtime = tmdbItem ? tmdbItem.runtime : null;
-        movie.tmdb_vote_average = tmdbItem ? tmdbItem.vote_average : null;
+    //     movie.tmdb_title = tmdbItem ? tmdbItem.title : null;
+    //     movie.tmdb_overview = tmdbItem ? tmdbItem.overview : null;
+    //     movie.tmdb_poster_path = tmdbItem ? tmdbItem.poster_path : null;
+    //     movie.tmdb_backdrop_path = tmdbItem ? tmdbItem.backdrop_path : null;
+    //     movie.tmdb_genres = tmdbItem ? tmdbItem.genres : null;
+    //     movie.tmdb_extra_images = tmdbItem ? tmdbItem.images : null;
+    //     movie.tmdb_release_date = tmdbItem ? tmdbItem.release_date : null;
+    //     movie.tmdb_release_status = tmdbItem ? tmdbItem.status : null;
+    //     movie.tmdb_production_companies = tmdbItem ? tmdbItem.production_companies : null;
+    //     movie.tmdb_video_runtime = tmdbItem ? tmdbItem.runtime : null;
+    //     movie.tmdb_vote_average = tmdbItem ? tmdbItem.vote_average : null;
         
-        return movie;
+    //     return movie;
 
-        });
-    };
+    //     });
+    // };
 
-    if(dataMainSecureSeriesUrl && dataTmdbSecureSeriesUrl) {
-        serieResult = dataMainSecureSeriesUrl.map(serie => {
+    // if(dataMainSecureSeriesUrl && dataTmdbSecureSeriesUrl) {
+    //     serieResult = dataMainSecureSeriesUrl.map(serie => {
 
-        const tmdbItem = dataTmdbSecureSeriesUrl.find(tmdbSerie => tmdbSerie.id === serie.tmdb_id);
+    //     const tmdbItem = dataTmdbSecureSeriesUrl.find(tmdbSerie => tmdbSerie.id === serie.tmdb_id);
         
-        serie.tmdb_title = tmdbItem ? tmdbItem.name : null;
-        serie.tmdb_overview = tmdbItem ? tmdbItem.overview : null;
-        serie.tmdb_poster_path = tmdbItem ? tmdbItem.poster_path : null;
-        serie.tmdb_backdrop_path = tmdbItem ? tmdbItem.backdrop_path : null;
-        serie.tmdb_genres = tmdbItem ? tmdbItem.genres : null;
-        serie.tmdb_extra_images = tmdbItem ? tmdbItem.images : null;
-        serie.tmdb_release_date = tmdbItem ? tmdbItem.release_date : null;
-        serie.tmdb_release_status = tmdbItem ? tmdbItem.status : null;
-        serie.tmdb_production_companies = tmdbItem ? tmdbItem.production_companies : null;
-        serie.tmdb_video_runtime = tmdbItem ? tmdbItem.runtime : null;
-        serie.tmdb_vote_average = tmdbItem ? tmdbItem.vote_average : null;
+    //     serie.tmdb_title = tmdbItem ? tmdbItem.name : null;
+    //     serie.tmdb_overview = tmdbItem ? tmdbItem.overview : null;
+    //     serie.tmdb_poster_path = tmdbItem ? tmdbItem.poster_path : null;
+    //     serie.tmdb_backdrop_path = tmdbItem ? tmdbItem.backdrop_path : null;
+    //     serie.tmdb_genres = tmdbItem ? tmdbItem.genres : null;
+    //     serie.tmdb_extra_images = tmdbItem ? tmdbItem.images : null;
+    //     serie.tmdb_release_date = tmdbItem ? tmdbItem.release_date : null;
+    //     serie.tmdb_release_status = tmdbItem ? tmdbItem.status : null;
+    //     serie.tmdb_production_companies = tmdbItem ? tmdbItem.production_companies : null;
+    //     serie.tmdb_video_runtime = tmdbItem ? tmdbItem.runtime : null;
+    //     serie.tmdb_vote_average = tmdbItem ? tmdbItem.vote_average : null;
         
-        return serie;
+    //     return serie;
 
-        });
-    };
+    //     });
+    // };
 
     const searchItems = (searchValue) => {
         setSearchInput(searchValue)

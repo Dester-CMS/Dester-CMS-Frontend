@@ -10,17 +10,17 @@ import { Badge, Container, Figure } from "react-bootstrap";
 import './style.css'
 import { POSTER_SIZE, TMDB_IMAGE_BASE_URL } from "../../config";
 
-const DesterSlider = ({title, itemData, layout, slug, itemType}) => {
+const DesterSlider = ({title, itemData, layout, slug, itemType, hideMore}) => {
 
     SwiperCore.use([Autoplay, Navigation, A11y]);
 
     return (
         <Container fluid>
-            <Container fluid className="d-flex justify-content-between align-items-center">
+            <Container fluid className="d-flex justify-content-between align-items-center ps-2">
                 <h4 className="card-collection-title">{title}</h4>
-                <a className="disabled-link" href={ "/search?" + slug }><h6 style={{"color": "white"}}>More<i className="bi bi-caret-right-fill"></i></h6></a>
+                {hideMore === 0 ? <a className="disabled-link" href={ "/search?" + slug }><h6 style={{"color": "white"}}>More<i className="bi bi-caret-right-fill"></i></h6></a> : ""}
             </Container>
-            { layout === "landscape" && (
+            { layout === "landscape" && (itemType === "movie" || itemType === "serie") && (
                 <Swiper
                     className="sslider sslider-landscape p-2 hide-navigation"
                     navigation
@@ -65,7 +65,7 @@ const DesterSlider = ({title, itemData, layout, slug, itemType}) => {
                     )))}
                 </Swiper>
             )}
-            { layout === "portrait" && (
+            { layout === "portrait" && (itemType === "movie" || itemType === "serie")  && (
                 <Swiper
                     className="sslider sslider-portrait p-2"
                     navigation
@@ -133,6 +133,58 @@ const DesterSlider = ({title, itemData, layout, slug, itemType}) => {
                                         </Figure.Caption>
                                     </Figure>
                                 </a>
+                        </SwiperSlide>
+                    )))}
+                </Swiper>
+            )}
+            { layout === "portrait" && itemType === "person" && (
+                <Swiper
+                    className="sslider sslider-portrait p-2"
+                    navigation
+                    autoplay={{
+                        "delay": 3000,
+                        "disableOnInteraction": false
+                    }}
+                    breakpoints={{
+                        "240": {
+                            "slidesPerView": 3,
+                            "spaceBetween": 10
+                        },
+                        "470": {
+                            "slidesPerView": 4,
+                            "spaceBetween": 10
+                        },
+                        "640": {
+                            "slidesPerView": 5,
+                            "spaceBetween": 20
+                        },
+                        "740": {
+                            "slidesPerView": 7,
+                            "spaceBetween": 20
+                        },
+                        "1194": {
+                            "slidesPerView": 8,
+                            "spaceBetween": 20
+                        }
+                    }}
+                    >
+                    { itemData && 
+                        (itemData.slice(0, 15).map((singleItem, index) => (
+                        <SwiperSlide className="sslider-slide" key={index}>
+                            <Figure className="show-hover-hidden">
+                                <div className="card-img mb-2">
+                                    <div className="card-img-image">
+                                        <Figure.Image 
+                                            className="img-fluid card-image rounded" 
+                                            src={ TMDB_IMAGE_BASE_URL + POSTER_SIZE + singleItem.profile_path }
+                                            onError={(e) => (e.target.onerror = null, e.target.src = PosterPlaceHolder)}
+                                        />
+                                    </div>
+                                </div>
+                                <Figure.Caption>
+                                    <h6>{singleItem.name}</h6>
+                                </Figure.Caption>
+                            </Figure>
                         </SwiperSlide>
                     )))}
                 </Swiper>

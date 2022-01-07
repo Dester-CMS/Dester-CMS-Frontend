@@ -1,7 +1,7 @@
 import { Link, useSearchParams } from 'react-router-dom';
 import Plyr from 'plyr-react';
 import 'plyr-react/dist/plyr.css';
-import { Button, Spinner } from 'react-bootstrap';
+import { Badge, Button, Spinner } from 'react-bootstrap';
 import { DesterEpisodes } from '../../../Components';
 import './style.css';
 import { useFetchMultiSingle } from '../../../utilities/useFetchSecureUrl';
@@ -26,11 +26,11 @@ const DesterSerieWatchPage = () => {
     const { mainUrlDataSingle, loadingMultiUrlSingle, errorMultiUrlSingle } = useFetchMultiSingle(process.env.REACT_APP_S_API_URL, process.env.REACT_APP_SECURE_URL, "series", "serie", tmdb_id);
 
     if (loadingMultiUrlSingle) return (
-        <div className="episode-video-loading">
+        <div className="video-loading">
             <Spinner className="color-white" animation="border" role="status">
                 <span className="visually-hidden">Loading...</span>
             </Spinner>
-            <span className="episode-video-loading-title">Loading...</span>
+            <span className="video-loading-title">Loading...</span>
         </div>
     )
 
@@ -68,9 +68,9 @@ const DesterSerieWatchPage = () => {
                     )}
                     { episodes && +item_index_no > 0 && (+item_index_no === episodes.length || +item_index_no < episodes.length) &&(
                         <div>
-                            <div className="episode-video-top">
-                                <span className="episode-video-title color-white">&nbsp;Season - {episodes[(+item_index_no - 1)].season_number}, Episode - {episodes[(+item_index_no - 1)].episode_number} <span className='break'>|</span> {episodes[(+item_index_no - 1)].episode_title}</span>
-                                <span className="episode-video-description color-white">[ Audio - {episodes[(+item_index_no - 1)].video_info[0].audio}, Quality - {episodes[(+item_index_no - 1)].video_info[0].quality}p ]</span>
+                            <div className="video-top">
+                                <span className="video-title color-white">&nbsp;<Badge pill bg="primary">S-{episodes[(+item_index_no - 1)].season_number} . E-{episodes[(+item_index_no - 1)].episode_number}</Badge> <Badge pill bg="primary">{episodes[(+item_index_no - 1)].video_info[0].audio}</Badge> <Badge pill bg="primary">{episodes[(+item_index_no - 1)].video_info[0].quality}p</Badge><br/><span className='break'>|</span> {episodes[(+item_index_no - 1)].episode_title}</span>
+                                <span className="video-description color-white"></span>
                             </div>
                             <Plyr
                                 options={options}

@@ -18,33 +18,34 @@ const MoviesPage = ({ loading, error, movieResult }) => {
     return (
         <main>
             <Container fluid>
-                <Row className="p-2">
-                    <h4>All Movies</h4>
-                    { movieResult && (
-                    <ShowMore
-                     items={movieResult}
-                     by={4}
-                     >
+                <Container fluid className="mt-2"><h4>All Movies</h4></Container>
+                { movieResult && (
+                <ShowMore
+                    items={movieResult}
+                    by={40}
+                >
                     {({ current, onMore }) => (
-                        <Row>
+                        <Row className="p-2">
                         {(current && current.map((movie) => (
                             <Col key={movie.id} className="p-lg-4 p-sm-3" xs={6} sm={4} md={3} lg={3} xl={2}>
                                 <ItemDesignOne item={movie} type="movie"/>
                             </Col>
                         )))}
-                        <button
-                            disabled={!onMore}
-                            onClick={() => {
-                            if (!!onMore) onMore();
-                            }}
-                        >
-                            more
-                        </button>
+                        <div className="d-flex justify-content-center p-3">
+                            <button
+                                className="s-btn-1"
+                                disabled={!onMore}
+                                onClick={() => {
+                                if (!!onMore) onMore();
+                                }}
+                            >
+                                Show More
+                            </button>
+                        </div>
                         </Row>
                     )}
-                    </ShowMore>
-                    )}
-                </Row>
+                </ShowMore>
+                )}
             </Container>
         </main>
     );

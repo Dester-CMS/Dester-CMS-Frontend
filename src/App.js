@@ -155,7 +155,7 @@ const App = () => {
                 loadingMainUrl={loadingMainHomeUrl} 
                 // Error Props
                 errorMultiUrlMovie={errorSecureMoviesUrl}
-                errorMultiUrlSerie={errorSecureMoviesUrl}
+                errorMultiUrlSerie={errorSecureSeriesUrl}
                 errorMainUrl={errorMainHomeUrl} 
                 // Actual Data Props
                 movieResult={movieResult}
@@ -165,7 +165,20 @@ const App = () => {
               />
             } 
           />
-          <Route exact path="/search" element={<DesterSearchPage />} />
+          <Route 
+            exact 
+            path="/search" 
+            element={
+              <DesterSearchPage 
+                movieResult={movieResult}
+                serieResult={serieResult}
+                loadingSecureMoviesUrl={loadingSecureMoviesUrl}
+                loadingSecureSeriesUrl={loadingSecureSeriesUrl}
+                errorSecureMoviesUrl={errorSecureMoviesUrl}
+                errorSecureMoviesUrl={errorSecureMoviesUrl}
+              />
+            } 
+          />
           <Route 
             exact 
             path="/movies" 

@@ -1,4 +1,4 @@
-.episode-video-loading {
+.video-loading {
     display: flex;
     align-items: center;
     background-color: var(--s-bg-2);
@@ -7,13 +7,13 @@
     margin: 20px;
 }
 
-.episode-video-loading-title {
+.video-loading-title {
     font-size: 20px;
     color: var(--s-white-8);
     margin-left: 20px;
 }
 
-.episode-video-top {
+.video-top {
     display: flex;
     align-items: center;
     background-color: var(--s-bg-2);
@@ -21,7 +21,17 @@
     border-radius: 10px 10px 0px 0px;
 }
 
-.episode-video-title {
+.video-title {
     font-size: 20px;
     margin-right: 20px;
+}
+
+@media (max-width: 768px) {
+    .video-title {
+        font-size: 16px;
+        width: 100%;
+    }
+    .video-description {
+        font-size: 12px;
+    }
 }
