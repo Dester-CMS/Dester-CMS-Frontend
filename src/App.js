@@ -114,7 +114,6 @@ const App = () => {
 
   if(dataMainSecureSeriesFeaturedUrl && dataTmdbSecureSeriesFeaturedUrl) {
     serieFeaturedResult = dataMainSecureSeriesFeaturedUrl.map(serie => {
-
       const tmdbItem = dataTmdbSecureSeriesFeaturedUrl.find(tmdbSerie => tmdbSerie.id === serie.tmdb_id);
       
       serie.tmdb_title = tmdbItem ? tmdbItem.name : null;
