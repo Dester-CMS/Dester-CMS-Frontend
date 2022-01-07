@@ -1,4 +1,4 @@
-import { Alert, Badge, Breadcrumb, Button, Container, Modal, Ratio } from 'react-bootstrap';
+import { Alert, Badge, Breadcrumb, Button, Container, Modal, Ratio, Row } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import { BACKDROP_SIZE, POSTER_SIZE, TMDB_IMAGE_BASE_URL } from '../../config';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
@@ -10,6 +10,7 @@ import { DesterSkeletonItemPage } from '../../Components';
 import { DesterEpisodes } from '../../Components';
 import DesterError from '../../Components/DesterError/DesterError';
 import { useFetchMultiSingle } from '../../utilities/useFetchSecureUrl';
+import DesterPersons from '../../Components/DesterPersons/DesterPersons';
 
 const DesterSeriePage = () => {
 
@@ -131,6 +132,7 @@ const DesterSeriePage = () => {
                             </div>
                         </div>
                     </div>
+                    {tmdbUrlDataSingle.credits && (<Row className="m-1"><DesterPersons persons={tmdbUrlDataSingle.credits.cast}/></Row>)}
                     <Modal show={show} onHide={handleClose} size="lg">
                         <Modal.Header className="trailer-modal-header" closeButton>
                             <Modal.Title>Trailer</Modal.Title>
