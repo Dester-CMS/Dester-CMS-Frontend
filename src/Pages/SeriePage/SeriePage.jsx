@@ -79,7 +79,7 @@ const DesterSeriePage = () => {
                             <div className="col-lg-9">
                                 <div className="item__details__text">
                                     <div className="item__details__title">
-                                        <img src={TMDB_IMAGE_BASE_URL + POSTER_SIZE + itemData.images.logos[0].file_path} alt="" />
+                                        <img src={item.images.logos[0] === undefined ? "" : TMDB_IMAGE_BASE_URL + POSTER_SIZE + item.images.logos[0].file_path} alt="" />
                                         <h3>{itemData.name}</h3> <span>Original Title: {itemData.original_name}</span> </div>
                                         <div className="rating">
                                             <ReactStars 
