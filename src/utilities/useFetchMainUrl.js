@@ -9,16 +9,16 @@ function useFetchMainHomeUrl(mainUrl) {
   useEffect(() => {
       setLoadingMainUrl(true);
       axios
-          .get(`${mainUrl}/home`)
-          .then((response) => {
-              setDataMainUrl(response.data);
-          })
-          .catch((err) => {
-              setErrorMainUrl(err);
-          })
-          .finally(() => {
-              setLoadingMainUrl(false);
-          });
+        .get(`${mainUrl}/home`)
+        .then((response) => {
+            setDataMainUrl(response.data);
+        })
+        .catch((err) => {
+            setErrorMainUrl(err);
+        })
+        .finally(() => {
+            setLoadingMainUrl(false);
+        });
   }, [mainUrl]);
 
   return { dataMainHomeUrl, loadingMainHomeUrl, errorMainHomeUrl };

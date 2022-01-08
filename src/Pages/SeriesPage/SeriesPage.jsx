@@ -5,11 +5,11 @@ import ShowMore from '@tedconf/react-show-more';
 const SeriesPage = ({ loading, error, serieResult }) => {
 
     if (loading) return (
-        <div className="episode-video-loading">
+        <div className="video-loading">
             <Spinner className="color-white" animation="border" role="status">
                 <span className="visually-hidden">Loading...</span>
             </Spinner>
-            <span className="episode-video-loading-title">Loading...</span>
+            <span className="video-loading-title">Loading...</span>
         </div>
     )
     if (error) console.log(error);

@@ -1,119 +1,115 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-// Fetch Multiple Urls For Movies
+const useFetchHomeUrl = ( secureUrl ) => {
+    const [homeData, setHomeData] = useState(null);
+    const [homeLoading, setHomeLoading] = useState(false);
+    const [homeError, setHomeError] = useState(null);
+  
+    useEffect(() => {
+        setHomeLoading(true);
+        axios
+            .get(`${secureUrl}/home`)
+            .then((response) => {
+                setHomeData(response.data);
+            })
+            .catch((err) => {
+                setHomeError(err);
+            })
+            .finally(() => {
+                setHomeLoading(false);
+            });
+    }, [secureUrl]);
+  
+    return { homeData, homeLoading, homeError };
+  }
 
-const useFetchMultiMoviesUrl = ( mainUrl, secureUrl ) => {
-    const [dataMainSecureMoviesUrl, setDataMainSecureMoviesUrl] = useState(null);
-    const [dataTmdbSecureMoviesUrl, setDataTmdbSecureMoviesUrl] = useState(null);
-    const [dataMainSecureMoviesFeaturedUrl, setDataMainSecureMoviesFeaturedUrl] = useState(null);
-    const [dataTmdbSecureMoviesFeaturedUrl, setDataTmdbSecureMoviesFeaturedUrl] = useState(null);
-    const [loadingSecureMoviesUrl, setLoadingSecureMoviesUrl] = useState(false);
-    const [errorSecureMoviesUrl, setErrorSecureMoviesUrl] = useState(null);
+const useFetchMoviesUrl = ( secureUrl ) => {
+    const [moviesData, setMoviesData] = useState(null);
+    const [moviesFeaturedData, setMoviesFeaturedData] = useState(null);
+    const [moviesLoading, setMoviesLoading] = useState(false);
+    const [moviesError, setMoviesError] = useState(null);
 
     useEffect(() => {
-        const mainMoviesApi = axios.get(`${mainUrl}/movies?_sort=createdAt:DESC`);
         const secureMoviesApi = axios.get(`${secureUrl}/movies`);
-        const mainMoviesFeaturedApi = axios.get(`${mainUrl}/movies?featured=true`);
         const secureMoviesFeaturedApi = axios.get(`${secureUrl}/movies_featured`);
-        setLoadingSecureMoviesUrl(true);
+        setMoviesLoading(true);
         Promise
-        .all([mainMoviesApi, secureMoviesApi, mainMoviesFeaturedApi, secureMoviesFeaturedApi])
+        .all([secureMoviesApi, secureMoviesFeaturedApi])
         .then(values => {
-            setDataMainSecureMoviesUrl(values[0].data);
-            setDataTmdbSecureMoviesUrl(values[1].data);
-            setDataMainSecureMoviesFeaturedUrl(values[2].data);
-            setDataTmdbSecureMoviesFeaturedUrl(values[3].data);
+            setMoviesData(values[0].data);
+            setMoviesFeaturedData(values[1].data);
         })
         .catch((err) => {
-            setErrorSecureMoviesUrl(err);
+            setMoviesError(err);
         })
         .finally(() => {
-            setLoadingSecureMoviesUrl(false);
+            setMoviesLoading(false);
         })
-    }, [mainUrl,secureUrl]);
+    }, [secureUrl]);
 
     return { 
-        dataMainSecureMoviesUrl,
-        dataTmdbSecureMoviesUrl,
-        dataMainSecureMoviesFeaturedUrl,
-        dataTmdbSecureMoviesFeaturedUrl,
-        loadingSecureMoviesUrl,
-        errorSecureMoviesUrl
+        moviesData,
+        moviesFeaturedData,
+        moviesLoading,
+        moviesError
+    };
+};
+
+const useFetchSeriesUrl = ( secureUrl ) => {
+    const [seriesData, setSeriesData] = useState(null);
+    const [seriesFeaturedData, setSeriesFeaturedData] = useState(null);
+    const [seriesLoading, setSeriesLoading] = useState(false);
+    const [seriesError, setSeriesError] = useState(null);
+
+    useEffect(() => {
+        const secureSeriesApi = axios.get(`${secureUrl}/series`);
+        const secureSeriesFeaturedApi = axios.get(`${secureUrl}/series_featured`);
+        setSeriesLoading(true);
+        Promise
+        .all([secureSeriesApi, secureSeriesFeaturedApi])
+        .then(values => {
+            setSeriesData(values[0].data);
+            setSeriesFeaturedData(values[1].data);
+        })
+        .catch((err) => {
+            setSeriesError(err);
+        })
+        .finally(() => {
+            setSeriesLoading(false);
+        })
+    }, [secureUrl]);
+
+    return { 
+        seriesData,
+        seriesFeaturedData,
+        seriesLoading,
+        seriesError
     };
 }
 
-// Fetch Multiple Urls For Series
 
-const useFetchMultiSeriesUrl = ( mainUrl, secureUrl ) => {
-    const [dataMainSecureSeriesUrl, setDataMainSecureSeriesUrl] = useState(null);
-    const [dataTmdbSecureSeriesUrl, setDataTmdbSecureSeriesUrl] = useState(null);
-    const [dataMainSecureSeriesFeaturedUrl, setDataMainSecureSeriesFeaturedUrl] = useState(null);
-    const [dataTmdbSecureSeriesFeaturedUrl, setDataTmdbSecureSeriesFeaturedUrl] = useState(null);
-    const [loadingSecureSeriesUrl, setLoadingSecureSeriesUrl] = useState(false);
-    const [errorSecureSeriesUrl, setErrorSecureSeriesUrl] = useState(null);
+const useFetchSingleUrl = (secureUrl, secureUrlPath, path) => {
+
+    const [itemData, setItemData] = useState(null);
+    const [itemLoading, setItemLoading] = useState(false);
+    const [itemError, setItemError] = useState(null);
 
     useEffect(() => {
-        const mainSeriesApi = axios.get(`${mainUrl}/series?_sort=createdAt:DESC`);
-        const secureSeriesApi = axios.get(`${secureUrl}/series`);
-        const mainSeriesFeaturedApi = axios.get(`${mainUrl}/series?featured=true`);
-        const secureSeriesFeaturedApi = axios.get(`${secureUrl}/series_featured`);
-        setLoadingSecureSeriesUrl(true);
-        Promise
-        .all([mainSeriesApi, secureSeriesApi, mainSeriesFeaturedApi, secureSeriesFeaturedApi])
-        .then(values => {
-            setDataMainSecureSeriesUrl(values[0].data);
-            setDataTmdbSecureSeriesUrl(values[1].data);
-            setDataMainSecureSeriesFeaturedUrl(values[2].data);
-            setDataTmdbSecureSeriesFeaturedUrl(values[3].data);
+        setItemLoading(true)
+        axios.get(`${secureUrl}/${secureUrlPath}/${path}`)
+        .then(response => {
+            setItemData(response.data);
         })
         .catch((err) => {
-            setErrorSecureSeriesUrl(err);
+            setItemError({err});
         })
         .finally(() => {
-            setLoadingSecureSeriesUrl(false);
+            setItemLoading(false);
         })
-    }, [mainUrl,secureUrl]);
+    }, [secureUrl, secureUrlPath, path]);
 
-    return { 
-        dataMainSecureSeriesUrl,
-        dataTmdbSecureSeriesUrl,
-        dataMainSecureSeriesFeaturedUrl,
-        dataTmdbSecureSeriesFeaturedUrl,
-        loadingSecureSeriesUrl,
-        errorSecureSeriesUrl
-    };
+  return { itemData, itemLoading, itemError };
 };
 
-// Fetch Single Item [ Movie or Serie ]
-
-const useFetchMultiSingle = (mainUrl, secureUrl, mainUrlPath, secureUrlPath, path) => {
-
-    const [mainUrlDataSingle, setMainUrlDataSingle] = useState(null);
-    const [tmdbUrlDataSingle, setTmdbUrlDataSingle] = useState(null);
-    const [loadingMultiUrlSingle, setLoadingMultiUrlSingle] = useState(false);
-    const [errorMultiUrlSingle, setErrorMultiUrlSingle] = useState(null);
-
-    useEffect(() => {
-        const apiOnePromise = axios.get(`${mainUrl}/${mainUrlPath}?tmdb_id=${path}`);
-        const apiTwoPromise = axios.get(`${secureUrl}/${secureUrlPath}/${path}`);
-        setLoadingMultiUrlSingle(true);
-        Promise.all([apiOnePromise, apiTwoPromise])
-        .then(values => {
-            const resa1 = values[0].data[0];
-            const resa2 = values[1].data;
-            setMainUrlDataSingle(resa1);
-            setTmdbUrlDataSingle(resa2);
-        })
-        .catch((err) => {
-            setErrorMultiUrlSingle({err});
-        })
-        .finally(() => {
-            setLoadingMultiUrlSingle(false);
-        })
-    }, [mainUrl, secureUrl, mainUrlPath, secureUrlPath, path]);
-
-  return { mainUrlDataSingle, tmdbUrlDataSingle, loadingMultiUrlSingle, errorMultiUrlSingle };
-};
-
-export { useFetchMultiMoviesUrl, useFetchMultiSeriesUrl, useFetchMultiSingle };
+export { useFetchHomeUrl, useFetchMoviesUrl, useFetchSeriesUrl, useFetchSingleUrl };

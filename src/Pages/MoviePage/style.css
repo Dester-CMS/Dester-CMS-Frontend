@@ -6,6 +6,10 @@
   margin-right: auto;
 }
 
+.item-page-logo {
+  max-width: 200px;
+}
+
 .item__details__text {
 	position: relative;
   margin-left: 20px;

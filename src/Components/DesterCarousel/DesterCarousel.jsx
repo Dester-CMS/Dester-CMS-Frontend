@@ -6,7 +6,6 @@ import './style.css';
 import { SKELETON_BASE_COLOR, SKELETON_SHINE_COLOR, SKELETON_WIDTH_70, TMDB_IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../config';
 
 const DesterCarousel = ({itemData, itemType}) => {
-
     return (
         <Carousel fade style={{marginBottom: "25px"}}>
             { itemData && (itemData.slice(0, 3).map((item) => (
@@ -14,7 +13,7 @@ const DesterCarousel = ({itemData, itemType}) => {
                 <Carousel.Caption style={{"width": "100%"}}>
                 <div className="container-home-info col-lg-5 g-0">
                     <div className="home-bg-info-0">
-                        <img className="img-fluid home-bg-logo hide" src={ item.tmdb_extra_images.logos.length === 0 ? "" : TMDB_IMAGE_BASE_URL + POSTER_SIZE + item.tmdb_extra_images.logos[0].file_path } alt=""/>
+                        <img className="img-fluid home-bg-logo hide" src={item.tmdb_logo_images === undefined ? "" : TMDB_IMAGE_BASE_URL + POSTER_SIZE + item.tmdb_logo_images.file_path} alt=""/>
                         <h4>{item.tmdb_title || item.title}</h4>
                     </div>
                     <div className="home-bg-info-1">
