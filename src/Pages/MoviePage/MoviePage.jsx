@@ -106,7 +106,7 @@ const DesterMoviePage = () => {
                                 <div className="col-lg-9">
                                     <div className="item__details__text">
                                         <div className="item__details__title">
-                                            <img className="item-page-logo" src={TMDB_IMAGE_BASE_URL + POSTER_SIZE + itemData.images.logos[0].file_path} alt="" />
+                                            <img className="item-page-logo" src={itemData.images.logos[0] === undefined ? "" : TMDB_IMAGE_BASE_URL + POSTER_SIZE + itemData.images.logos[0].file_path} alt="" />
                                             <h3>{itemData.title}</h3> <span>Original Title: {itemData.original_title}</span> </div>
                                         <div className="item__details__rating"></div>
                                             <div className="rating">
