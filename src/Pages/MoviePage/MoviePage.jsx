@@ -1,18 +1,17 @@
 import { Alert, Badge, Breadcrumb, Button, Container, Modal, Ratio, Row } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
-import { BACKDROP_SIZE, POSTER_SIZE, TMDB_IMAGE_BASE_URL } from '../../config';
+import { APP_LOGO_FULL, BACKDROP_SIZE, POSTER_SIZE, TMDB_IMAGE_BASE_URL } from '../../config';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import ReactStars from "react-rating-stars-component";
 import 'react-circular-progressbar/dist/styles.css';
 import PosterPlaceholder from '../../assets/rectangle-poster.svg';
 import { useState } from 'react';
 import { DesterSkeletonItemPage } from '../../Components';
-import Plyr from 'plyr-react';
-import 'plyr-react/dist/plyr.css';
 import './style.css';
 import DesterError from '../../Components/DesterError/DesterError';
 import { useFetchSingleUrl } from '../../utilities/useFetchSecureUrl';
 import DesterPersons from '../../Components/DesterPersons/DesterPersons';
+import Artplayer from "artplayer/examples/react/Artplayer";
 
 const DesterMoviePage = () => {
 
@@ -25,25 +24,6 @@ const DesterMoviePage = () => {
     const [showResults, setShowResults] = useState(false);
     const showVideoPlayer = () => setShowResults(true);
 
-    const options = {
-        controls: [
-          'play-large',
-          'rewind',
-          'play',
-          'fast-forward',
-          'current-time',
-          'progress',
-          'duration',
-          'mute',
-          'volume',
-          'download',
-          'settings',
-          'fullscreen',
-        ],
-        autoplay: false,
-        muted: false,
-    }
-
     const location = useLocation();
     const path = location.pathname.split("/")[2];
 
@@ -54,6 +34,12 @@ const DesterMoviePage = () => {
     if ( !itemData ) return (<DesterError errorCode="404" message="Can't Find Movie"/>);
 
     if (itemError) console.log(itemError);
+
+    let sources = itemData.video_info
+    .map((vidInfo)=>({
+        html: vidInfo.audio + " [" + vidInfo.quality + "p]",
+        url: vidInfo.video_url
+    }))
 
     return (
         <div>
@@ -172,24 +158,36 @@ const DesterMoviePage = () => {
                     </Modal>
                     { showResults ?
                     <div id="video-container" className="video-container container">
-                            <div className="video-top">
-                                <span className="video-title color-white">&nbsp;<Badge pill bg="primary">{itemData.video_info[0].audio}</Badge> <Badge pill bg="primary">{itemData.video_info[0].quality}p</Badge><br/><span className='break'>|</span> {itemData.title}</span>
-                            </div>
-
-                            <Plyr
-                            options={options}
-                            source={{
-                                type: 'video',
-                                title: 'Example title',
-                                sources: [
-                                    {
-                                    src: `${itemData.video_info[0].video_url}`,
-                                    type: 'video/mp4',
-                                    size: 1080,
-                                    }
-                                ]
-                            }}
-                        />
+                        <div className="video-top">
+                            <span className="video-title color-white">&nbsp;<span className='break'>|</span> {itemData.title}</span>
+                        </div>
+                        <Ratio aspectRatio="16x9">
+                            <Artplayer
+                                option={{
+                                    theme: '#14dca0',
+                                    url: itemData.video_info[0].video_url,
+                                    aspectRatio: true,
+                                    setting: true,
+                                    hotkey: true,
+                                    fullscreen: true,
+                                    whitelist: ['*'],
+                                    playbackRate: true,
+                                    localSubtitle: true,
+                                    quality: sources,
+                                    // subtitle: {
+                                    //     url: itemData.video_info[0].subtitles,
+                                    //     style: {
+                                    //         color: '#ffffff',
+                                    //         'font-size': '28px'
+                                    //     },
+                                    //     encoding: 'utf-8'
+                                    // },
+                                    icons: {
+                                        state: `<img width="150" heigth="150" src=${APP_LOGO_FULL}>`,
+                                    },
+                                }}
+                            />
+                        </Ratio>
                     </div>
                     : <></> }
                 </Container>
