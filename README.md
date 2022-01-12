@@ -62,7 +62,7 @@ yarn install
 ## Packages Used
 
 Bootstrap For UI Components<br>
-Plyr Video Player<br>
+Art Video Player<br>
 Axios for data fetching<br>
 Tmdb for images and additional info<br>
 <br>
