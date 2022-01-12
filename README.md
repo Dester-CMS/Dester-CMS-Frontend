@@ -49,7 +49,6 @@ yarn install
 ### Environmental Variables
 
 `REACT_APP_S_API_URL` : Url of your deployed Strapi Backend. WITHOUT TRAILING SLASH!<br>
-`REACT_APP_TMDB_API_KEY` : Your Tmdb API Key.<br>
 `CI` : false
 
 <br>
