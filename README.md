@@ -64,6 +64,7 @@ Bootstrap For UI Components<br>
 Art Video Player<br>
 Axios for data fetching<br>
 Tmdb for images and additional info<br>
+Css.gg icons https://github.com/astrit/css.gg
 <br>
 react-circular-progressbar - For item ratings<br>
 react-loading-skeleton - For Skeleton Assets<br>
