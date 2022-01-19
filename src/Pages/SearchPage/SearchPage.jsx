@@ -38,16 +38,6 @@ const SearchPage = ({ movieResult, serieResult, loadingSecureMoviesUrl, loadingS
         };
     }
 
-    const searchItemsByGenre = (currentGenre) => {
-        const resultGenre = movieResult.map((movie) => {
-            movieResult.find(genreMovie => movie.tmdb_genres === currentGenre)
-            return genreMovie
-        });
-        setGenreFilter(resultGenre)
-    }
-
-    console.log(genreFilter)
-
     return (
         <main>
             {movieResult && serieResult && (
