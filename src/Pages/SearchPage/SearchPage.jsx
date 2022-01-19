@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Col, Container, FormControl, InputGroup, Row } from 'react-bootstrap';
+import { Col, Container, FormControl, InputGroup, Row } from 'react-bootstrap';
 import { ItemDesignOne } from '../../Components';
 import "./style.css"
 
@@ -8,7 +8,6 @@ const SearchPage = ({ movieResult, serieResult, loadingSecureMoviesUrl, loadingS
     const [searchInput, setSearchInput] = useState('');
     const [filteredResultsMovies, setFilteredResultsMovies] = useState([]);
     const [filteredResultsSeries, setFilteredResultsSeries] = useState([]);
-    const [genreFilter, setGenreFilter] = useState([])
 
     if (loadingSecureMoviesUrl && loadingSecureSeriesUrl) return <h3 className="color-white p-3">Loading...</h3>
 
@@ -52,24 +51,8 @@ const SearchPage = ({ movieResult, serieResult, loadingSecureMoviesUrl, loadingS
                                 onChange={(e) => searchItems(e.target.value)}
                             />
                         </InputGroup>
-                        <div>
-                            <Button>All</Button>{' '}
-                            <Button tmdb_genre_id="Action" onClick={() => searchItemsByGenre('Action')}>Action</Button>{' '}
-                            <Button tmdb_genre_id="Animation" onClick={() => searchItemsByGenre('Animation')}>Animation</Button>{' '}
-                            <Button tmdb_genre_id="Drama" onClick={() => searchItemsByGenre('Drama')}>Drama</Button>
-                        </div>
                     </div>
                     <Row className="p-2">
-                    <h4>Movies Found</h4>
-                        {genreFilter.map((item) => {
-                            return (
-                                <Col key={item.id} className="p-lg-4 p-sm-3" xs={6} sm={4} md={3} lg={3} xl={2}>
-                                    <ItemDesignOne type="movie" item={item}/>
-                                </Col>
-                            )
-                        })}
-                    </Row>
-                    {/* <Row className="p-2">
                     <h4>Movies Found</h4>
                         {searchInput.length > 1 ? (
                             filteredResultsMovies.map((item) => {
@@ -108,7 +91,7 @@ const SearchPage = ({ movieResult, serieResult, loadingSecureMoviesUrl, loadingS
                                 )
                             })
                         )}
-                    </Row> */}
+                    </Row>
                 </Container>
             )}
         </main>
